@@ -106,7 +106,7 @@
 //       <Header />
 //       <div className="flex flex-col items-center text-white text-3xl bg-gradient-to-t from-orange-400 to-white w-full h-80 justify-center">
 //         <div className="relative w-40 h-40">
-//           <Image src="/images/AlBAaik.png" fill alt="Picture of the author" />
+//           <Image src="./images/AlBAaik.png" fill alt="Picture of the author" />
 //         </div>
 //         <h2 className="">AlBAik</h2>
 //         <div className="relative max-sm:mt-4 h-9 mt-2 lg:w-6/12 md:w-8/12 sm:w-9/12 max-sm:w-11/12 w-5/12 flex items-center text-gray-400">
