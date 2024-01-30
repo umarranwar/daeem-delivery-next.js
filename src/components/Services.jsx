@@ -80,14 +80,14 @@ function Services() {
           every journey you take.
         </p>
         <h3>More About Us</h3>
-        <div className="flex justify-evenly items-center max-sm:w-full shadow-[0px_2px_5px_#bab6b5] self-center max-sm:h-40 w-11/12  rounded-2xl border border-gray-200 flex-col bg-orange-300 mt-24 h-52">
+        <div className="flex justify-evenly items-center max-sm:w-full self-center max-sm:h-40 w-11/12  rounded-2xl border border-gray-200 flex-col bg-gradient-to-br from-orange-400 to-orange-200 mt-24 h-52">
           <h1 className="text-2xl text-white">Join Us</h1>
           <p className="text-white">Be part of our success story</p>
           <div className="flex flex-row justify-between">
-            <button className="flex justify-center text-white text-sm items-center transition ease-in-out duration-300  max-sm:h-7 max-sm:w-36 mr-3 h-9 w-40 bg-blue-900 hover:bg-orange-400 active:bg-blue-700 rounded-full hover:cursor-pointer">
+            <button className="flex justify-center text-white text-sm items-center transition ease-in-out duration-300  max-sm:h-7 max-sm:w-36 mr-3 h-9 w-40 bg-blue-900 hover:bg-orange-400 active:bg-blue-800 rounded-full hover:cursor-pointer">
               Join as Restaurant
             </button>
-            <button className="flex justify-center text-white  text-sm items-center transition ease-in-out duration-300 max-sm:h-7 max-sm:w-36 h-9 w-40 bg-orange-400 hover:bg-blue-900 active:bg-orange-300 rounded-full hover:cursor-pointer">
+            <button className="flex justify-center text-white text-sm items-center transition ease-in-out duration-300  max-sm:h-7 max-sm:w-36 mr-3 h-9 w-40 bg-blue-900 hover:bg-orange-400 active:bg-blue-800 rounded-full hover:cursor-pointer">
               Join as Driver
             </button>
           </div>

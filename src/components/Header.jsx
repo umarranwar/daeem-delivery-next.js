@@ -12,17 +12,17 @@ function Header() {
   const router = useRouter();
   return (
     <div className="bg-blue-900 w-full flex justify-around items-center h-16">
-      <Image
-        src="/images/daeem-logo.png"
-        width={100}
-        height={100}
-        alt="logo"
-        className="hover:cursor-pointer"
-      />
+      <Link href="/">
+        <Image
+          src="/images/daeem-logo.png"
+          width={100}
+          height={100}
+          alt="logo"
+          className="w-auto h-auto hover:cursor-pointer"
+        />
+      </Link>
       <div className="flex gap-1 items-center">
-        <h4 className="text-gray-100 hover:underline ease transition duration-300 cursor-pointer hover:underline-offset-8 pointer">
-          English
-        </h4>
+        <h4 className="text-gray-100 cursor-pointer pointer">English</h4>
         <GiWorld size={20} className="text-gray-100" />
       </div>
       <div className="flex gap-4">

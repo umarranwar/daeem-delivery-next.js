@@ -6,6 +6,7 @@ import Ecommerce from "../components/Ecommerce";
 import Services from "../components/Services";
 import Footer from "../components/Footer";
 import Login from "@/components/Login";
+import Restaurant from "@/components/Restaurant";
 
 export default function page() {
   return (
@@ -13,6 +14,7 @@ export default function page() {
       <Header />
       <HeroSection />
       <Section />
+      <Restaurant />
       <Ecommerce />
       <Services />
       <Footer />
