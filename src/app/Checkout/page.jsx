@@ -1,11 +1,12 @@
 "use client";
+import { Context } from "@/components/Context";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { CiCreditCard2 } from "react-icons/ci";
 import { CiMoneyBill } from "react-icons/ci";
@@ -25,7 +26,7 @@ export default function Checkout() {
     homeAddress: "",
     location: "",
   });
-
+const {cartItems} = useContext(Context)
   const handleDebitCardChange = () => {
     setDebitCardChecked(!debitCardChecked);
     setCashOnDeliveryChecked(false); // Unselect cash on delivery when debit card is selected
@@ -36,9 +37,9 @@ export default function Checkout() {
     setDebitCardChecked(false); // Unselect debit card when cash on delivery is selected
   };
 
-  const userAuth = JSON.parse(localStorage.getItem("userAuth"));
-  const isLoggedIn = userAuth ? userAuth.isLoggedIn : false;
-  const currentUser = userAuth ? userAuth.currentUser : null;
+  if (typeof window !== "undefined") {
+    const userAuth = JSON.parse(localStorage.getItem("userAuth"));
+  }
 
   // Input handle functions for address fields
   const handleCityChange = (e) => {
@@ -81,7 +82,10 @@ export default function Checkout() {
     console.log("Cash on Delivery Checked:", cashOnDeliveryChecked);
 
     // Check if the user is signed up based on stored data in local storage
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    if (typeof window !== "undefined") {
+      const userAuth = JSON.parse(localStorage.getItem("userAuth"));
+      const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    }
 
     // Save the address information to local storage
     const userWithAddress = {
@@ -105,7 +109,7 @@ export default function Checkout() {
     : [];
   console.log("extractedValues ", extractedValues);
   // Retrieve extractedValues from local storage when the component mounts
-  useEffect(() => {
+  if (typeof window !== "undefined") {
     const storedData = localStorage.getItem("orderData");
     const storedValues = storedData ? JSON.parse(storedData) : [];
 
@@ -114,8 +118,7 @@ export default function Checkout() {
       "Retrieved extractedValues from Cart and local storage:",
       storedValues
     );
-  }, []); // This useEffect runs once when the component mounts
-
+  } // This useEffect runs once when the component mounts
   // Total price calculation
   const totalPrice = extractedValues.reduce(
     (acc, item) => acc + parseFloat(item.price) * item.quantity,
@@ -258,7 +261,7 @@ export default function Checkout() {
             <div className="flex p-2 flex-col w-full">
               <h1 className="text-xl my-4 font-bold">Your Order</h1>
               <div className="flex p-6 flex-col bg-white shadow-[0px_2px_5px_#bab6b5] rounded-lg">
-                {extractedValues.map((item, index) => (
+                {cartItems.map((item, index) => (
                   <div key={index}>
                     <div className="flex justify-between items-center w-full h-14">
                       <div className="flex gap-2">

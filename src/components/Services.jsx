@@ -1,5 +1,6 @@
+import Image from "next/image";
 import React from "react";
-
+Image;
 function Services() {
   return (
     <div
@@ -16,8 +17,11 @@ function Services() {
       </div>
       <div className="flex flex-wrap justify-center lg:w-11/12 flex-row w-5/6 mt-20">
         <div className="flex max-sm:mb-2 p-5 sm:mb-2 sm:mr-2 sm:w-60 md:w-72 xl:w-56 lg:w-56 border border-gray-200 hover:bg-gray-100 items-center flex-col">
-          <img
+          <Image
             src="/images/courier.png"
+            width={50}
+            height={50}
+            alt="image"
             className="w-24 h-24 hover:scale-105 duration-500"
           />
           <h2 className="text-lg mt-2">FAST DELIVERY</h2>
@@ -29,22 +33,28 @@ function Services() {
           </div>
         </div>
         <div className="flex p-5 max-sm:mb-2 sm:mb-2 sm:w-60 xl:w-56 md:w-72 lg:w-56 border border-gray-200 hover:bg-gray-100 items-center flex-col">
-          <img
+          <Image
             src="/images/tracking.png"
+            width={50}
+            height={50}
+            alt="image"
             className="w-24 h-24 hover:scale-105 duration-500"
           />
           <h2 className="text-lg mt-2">TRACK ORDER</h2>
           <div style={{ textAlign: "center", color: "gray" }}>
             <p>
               Track your order hassle-free with our user-friendly interface.
-              Stay updated in real-time on your purchase's journey from our
-              warehouse
+              Stay updated in real-time on your purchase&rsquo;s journey from
+              our warehouse
             </p>
           </div>
         </div>
         <div className="flex p-5 max-sm:mb-2 sm:mr-2 md:w-72 sm:w-60 xl:w-56 lg:w-56 border lg:ml-2 lg:mb-2 border-gray-200 hover:bg-gray-100 items-center flex-col">
-          <img
+          <Image
             src="/images/store.png"
+            width={50}
+            height={50}
+            alt="image"
             className="w-24 h-24 hover:scale-105 duration-500"
           />
           <h2 className="text-lg mt-2">UNLIMITED STORES</h2>
@@ -57,8 +67,11 @@ function Services() {
           </div>
         </div>
         <div className="flex p-5 sm:w-60 md:w-72 xl:w-56 lg:w-56 border border-gray-200 hover:bg-gray-100 items-center flex-col">
-          <img
+          <Image
             src="/images/booking.png"
+            width={50}
+            height={50}
+            alt="image"
             className="w-24 h-24 hover:scale-105 duration-500"
           />
           <h2 className="text-lg mt-2">QUICK BOOKING</h2>

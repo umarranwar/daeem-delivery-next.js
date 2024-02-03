@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 function Footer() {
   return (
     <div className="flex p-10 duration-300 justify-between hover:opacity-100 flex-wrap opacity-90 flex-row bg-blue-900 text-white mt-40">
@@ -37,35 +37,42 @@ function Footer() {
           Follow Us On Social Media
         </h2>
         <div className="flex flex-row mt-5">
-          <img
-            src="images/twitter.png"
+          <Image
+            src="/images/twitter.png"
             className="hover:cursor-pointer mr-5"
             height={30}
             width={30}
+            alt="image"
           />
-          <img
-            src="images/facebook.png"
+          <Image
+            src="/images/facebook.png"
             className="hover:cursor-pointer mr-5"
             height={30}
             width={30}
+            alt="image"
           />
-          <img
-            src="images/linkedin.png"
+          <Image
+            src="/images/linkedin.png"
             className="hover:cursor-pointer"
             height={30}
             width={30}
+            alt="image"
           />
         </div>
         <div className="flex flex-row mt-5 items-center">
-          <img
+          <Image
             src="/images/playstore.png"
             className="hover:cursor-pointer mr-5"
             width={100}
+            height={100}
+            alt="image"
           />
-          <img
+          <Image
             src="/images/appstore.png"
             className="hover:cursor-pointer"
             width={100}
+            height={100}
+            alt="image"
           />
         </div>
       </div>

@@ -1,12 +1,23 @@
+// import React from "react";
+
+// export default function page({ params }) {
+//   return (
+//     <div>
+//       <h1>Restaurant {params.restaurant}</h1>
+//     </div>
+//   );
+// }
+
 "use client";
 import React, { useContext, useState } from "react";
-import Header from "../../components/Header";
+import Header from "@/components/Header";
 import Image from "next/image";
-import Cart from "../../components/Cart";
+import Cart from "@/components/Cart";
 import Product from "@/components/Product";
 import { Context } from "@/components/Context";
 import { IoClose } from "react-icons/io5";
 import { IoSearchCircle } from "react-icons/io5";
+import Link from "next/link";
 
 const items = [
   {
@@ -74,7 +85,9 @@ const items = [
   },
 ];
 
-export default function Restaurants() {
+export default function Restaurants({ searchParams }) {
+  console.log("SearchParams", searchParams);
+
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [cartItems, setCartItems] = useState([]);
@@ -121,7 +134,7 @@ export default function Restaurants() {
       <div className="flex flex-col  items-center rounded-b-xl text-3xl w-full h-80 justify-center">
         <div className="relative w-36 h-36">
           <Image
-            src="/images/AlBAaik.png"
+            src={searchParams.logo}
             width={100}
             height={100}
             className="w-full h-full"
@@ -135,7 +148,7 @@ export default function Restaurants() {
           className="text-blue-900 mt-2"
           ora
         >
-          AlBAik
+          {searchParams.name}
         </h2>
         <div className="relative max-sm:mt-4 h-9 mt-4 lg:w-5/12 md:w-8/12 sm:w-9/12 max-sm:w-11/12 w-5/12 flex items-center text-gray-400">
           <input
@@ -150,7 +163,16 @@ export default function Restaurants() {
       <div className="flex flex-row w-full justify-center p-5">
         <div className="flex flex-row flex-wrap gap-3 w-8/12">
           {items.map((item) => (
-            <div key={item.id}>
+            <Link
+              href={`/Restaurant/${searchParams.store}/${item.id}`}
+              // href={{
+              //   pathname: `/Restaurant/${searchParams.store}/${item.id}`,
+              //   query: {
+              //     id: item.id,
+              //   },
+              // }}
+              key={item.id}
+            >
               <Product
                 id={item.id}
                 name={item.name}
@@ -159,7 +181,7 @@ export default function Restaurants() {
                 img={item.img}
                 showModel={() => handleItemClick(item.id)}
               />
-            </div>
+            </Link>
           ))}
         </div>
         <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
@@ -198,9 +220,6 @@ export default function Restaurants() {
           </button>
         </div>
       )}
-
-      {/* Render the rest of your components, such as Cart */}
-      {/* <Cart cartItems={cartItems} removeFromCart={removeFromCart} /> */}
     </div>
   );
 }

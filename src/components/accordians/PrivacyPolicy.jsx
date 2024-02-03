@@ -63,10 +63,11 @@ const PrivacyPolicy = () => {
             answer={
               <ul className="list-disc">
                 <li className="ml-3">
-                  Our website may use "cookies" to enhance user experience.
-                  Users can choose to set their web browser to refuse cookies or
-                  to alert when cookies are being sent. However, this may affect
-                  certain functionalities of the website.
+                  Our website may use &quot;cookies&quot; to enhance user
+                  experience. Users can choose to set their web browser to
+                  refuse cookies or to alert when cookies are being sent.
+                  However, this may affect certain functionalities of the
+                  website.
                 </li>
               </ul>
             }

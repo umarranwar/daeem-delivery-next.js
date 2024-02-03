@@ -30,6 +30,7 @@ export default function Product({
           src={img}
           width={200}
           height={200}
+          alt="cartImage"
           className="rounded-md w-full h-full hover:scale-105 ease-in-out duration-300"
         />
         <div className="bg-white opacity-80 absolute right-1 top-1 cursor-pointer rounded-full p-1.5">

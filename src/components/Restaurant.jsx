@@ -17,6 +17,7 @@ import albaik03 from "../../public/images/albaik03.jpg";
 
 import banner1 from "../../public/images/banner1.jpg";
 import banner2 from "../../public/images/banner2.jpg";
+import Link from "next/link";
 
 const food = [
   {
@@ -35,7 +36,7 @@ const food = [
   },
   {
     id: 3,
-    name: "/images/chickenRice.png",
+    name: "AlbAik Chicken Fries",
     price: "17.50",
     desc: "Description AlbAik Chicken Fries",
     img: "/images/albaik01.jpg",
@@ -83,6 +84,34 @@ const food = [
     img: "/images/albaik01.jpg",
   },
 ];
+
+const store = [
+  {
+    id: 1,
+    store: "AlBAik",
+    title: "7 Piece Chicken Nuggets Meal",
+    desc: "Spicy and crunchy to perfection includes a bun, fries, and 2 nuggets",
+    logo: "/images/AlBAaik.png",
+    bgImg: "/images/albaik03.jpg",
+  },
+  {
+    id: 2,
+    store: "HERFY",
+    title: "7 Piece Chicken Nuggets Meal",
+    desc: "Spicy and crunchy to perfection includes a bun, fries, and 2 nuggets",
+    logo: "/images/Herfy_logo.png",
+    bgImg: "/images/AlBaikpic3.JPG",
+  },
+  {
+    id: 3,
+    store: "KFC",
+    title: "7 Piece Chicken Nuggets Meal",
+    desc: "Spicy and crunchy to perfection includes a bun, fries, and 2 nuggets",
+    logo: "/images/KFC_logo.png",
+    bgImg: "/images/AlBaikpic1.JPG",
+  },
+];
+
 export default function Restaurant() {
   const router = useRouter();
 
@@ -109,141 +138,69 @@ export default function Restaurant() {
         <h1 className="text-white">Foods</h1>
       </div>
       <div className="flex p-7 gap-5 flex-row">
-        <div
-          onClick={() => router.push("/Restaurants")}
-          className="relative rounded-md p-1 bg-white hover:scale-105 ease-in-out duration-300 cursor-pointer shadow-2xl shadow-orange-400 w-2/6 h-[40vh]"
-        >
-          <Image src={Albaik} alt="banner" className="absolute m-2 w-20 h-20" />
-          <div className="bg-white opacity-90 absolute right-2 top-2 cursor-pointer rounded-full p-1.5">
-            <BiHeart className="size-6 text-blue-900" />
-          </div>
-          <div className="absolute text-white left-3 bottom-3">
-            <p
-              style={{
-                textShadow: "0px 1px 4px #2a2b2e",
-              }}
-              className="font-bold"
-            >
-              7 Piece Chicken Nuggets Meal
-            </p>
-            <p
-              style={{
-                textShadow: "0px 1px 4px #2a2b2e",
-              }}
-              className="text-sm text-white text-stroke w-2/4"
-            >
-              Spicy and crunchy to perfection includes a bun, fries, and 2
-              nuggets
-            </p>
-          </div>
-          <div>
-            <div className="absolute text-gray-600 right-20 bottom-3 h-7 w-28 px-2 rounded-full items-center flex justify-between flex-row bg-opacity-60 bg-white">
-              <div className="flex">
-                <span className="font-bold">4.30</span>
-                <FaStar className="mt-1 ml-1" size={15} color="orange" />
-              </div>
-              <div>
-                <p>(1.1k)</p>
-              </div>
+        {store.map((item) => (
+          <Link
+            href={{
+              pathname: `/Restaurant/${item.store}`,
+              query: {
+                store: item.store,
+                logo: item.logo,
+              },
+            }}
+            key={item.id}
+            className="relative w-2/6 h-[40vh] rounded-xl p-1 bg-white border hover:border-orange-400 hover:border-2 hover:scale-105 ease-in-out duration-300 cursor-pointer shadow-2xl shadow-orange-400 "
+          >
+            <Image
+              src={item.logo}
+              alt="banner"
+              width={100}
+              height={100}
+              className="absolute m-2 w-20 h-20"
+            />
+            <div className="bg-white opacity-90 absolute right-2 top-2 cursor-pointer rounded-full p-1.5">
+              <BiHeart className="size-6 text-blue-900" />
             </div>
-            <button className="absolute rounded-full px-2 h-7 bg-orange-400 text-white bottom-3 right-3">
-              Order
-            </button>
-          </div>
-          <Image
-            src={albaik03}
-            alt="menu"
-            className="w-full -z-50 rounded-md h-full"
-          />
-        </div>
-        <div className="relative rounded-md text-gray-600 p-1 cursor-pointer hover:scale-105 duration-300 ease-in-out bg-white shadow-2xl shadow-orange-400 w-2/6 h-[40vh]">
-          <Image src={Herfy} alt="logo" className="absolute m-2 w-20 h-20" />
-          <div className="bg-white opacity-90 absolute right-2 top-2 cursor-pointer rounded-full p-1.5">
-            <BiHeart className="size-6 text-blue-900" />
-          </div>
-          <div className="absolute text-white left-3 bottom-3">
-            <p
-              style={{
-                textShadow: "0px 1px 4px #2a2b2e",
-              }}
-              className="font-bold"
-            >
-              7 Piece Chicken Nuggets Meal
-            </p>
-            <p
-              style={{
-                textShadow: "0px 1px 4px #2a2b2e",
-              }}
-              className="text-sm text-white text-stroke w-2/4"
-            >
-              Spicy and crunchy to perfection includes a bun, fries, and 2
-              nuggets
-            </p>
-          </div>
-          <div>
-            <div className="absolute right-20 text-gray-600 bottom-3 h-7 w-28 px-2 rounded-full items-center flex justify-between flex-row bg-opacity-60 bg-white">
-              <div className="flex">
-                <span className="font-bold">4.20</span>
-                <FaStar className="mt-1 ml-1" size={15} color="orange" />
-              </div>
-              <div>
-                <p>(1.2k)</p>
-              </div>
+            <div className="absolute text-white left-3 bottom-3">
+              <p
+                style={{
+                  textShadow: "0px 1px 4px #2a2b2e",
+                }}
+                className="font-bold"
+              >
+                {item.title}
+              </p>
+              <p
+                style={{
+                  textShadow: "0px 1px 4px #2a2b2e",
+                }}
+                className="text-sm text-white text-stroke w-2/4"
+              >
+                {item.desc}
+              </p>
             </div>
-            <button className="absolute rounded-full px-2 h-7 bg-orange-400 text-white bottom-3 right-3">
-              Order
-            </button>
-          </div>
-          <Image
-            src={AlBaikpic3}
-            alt="menu"
-            className="w-full -z-50 rounded-md h-full"
-          />
-        </div>
-        <div className="relative rounded-md text-gray-600 p-1 bg-white cursor-pointer hover:scale-105 duration-300 ease-in-out shadow-2xl shadow-orange-400 w-2/6 h-[40vh]">
-          <Image src={KFC} alt="logo" className="absolute m-2 w-20 h-20" />
-          <div className="bg-white opacity-90 absolute right-2 top-2 cursor-pointer rounded-full p-1.5">
-            <BiHeart className="size-6 text-blue-900" />
-          </div>
-          <div className="absolute text-white left-3 bottom-3">
-            <p
-              style={{
-                textShadow: "0px 1px 4px #2a2b2e",
-              }}
-              className="font-bold"
-            >
-              7 Piece Chicken Nuggets Meal
-            </p>
-            <p
-              style={{
-                textShadow: "0px 1px 4px #2a2b2e",
-              }}
-              className="text-sm text-white text-stroke w-2/4"
-            >
-              Spicy and crunchy to perfection includes a bun, fries, and 2
-              nuggets
-            </p>
-          </div>
-          <div>
-            <div className="absolute right-20 bottom-3 h-7 w-28 px-2 rounded-full items-center flex justify-between flex-row bg-opacity-60 bg-white">
-              <div className="flex">
-                <span className="font-bold">4.6</span>
-                <FaStar className="mt-1 ml-1" size={15} color="orange" />
+            <div>
+              <div className="absolute text-gray-600 right-20 bottom-3 h-7 w-28 px-2 rounded-full items-center flex justify-between flex-row bg-opacity-60 bg-white">
+                <div className="flex">
+                  <span className="font-bold">4.30</span>
+                  <FaStar className="mt-1 ml-1" size={15} color="orange" />
+                </div>
+                <div>
+                  <p>(1.1k)</p>
+                </div>
               </div>
-              <div>
-                <p>(1.0k)</p>
-              </div>
+              <button className="absolute rounded-full px-2 h-7 bg-orange-400 text-white bottom-3 right-3">
+                Order
+              </button>
             </div>
-            <button className="absolute rounded-full px-2 h-7 bg-orange-400 text-white bottom-3 right-3">
-              Order
-            </button>
-          </div>
-          <Image
-            src={broastPic}
-            alt="menu"
-            className="w-full -z-50 rounded-md h-full"
-          />
-        </div>
+            <Image
+              src={albaik03}
+              alt="menu"
+              width={300}
+              height={300}
+              className="w-full -z-50 rounded-lg h-full"
+            />
+          </Link>
+        ))}
       </div>
       <div className="flex mt-3 relative items-center">
         <button>
@@ -257,10 +214,20 @@ export default function Restaurant() {
           className="flex overflow-x-scroll scroll scroll-smooth scrollbar-hide flex-row"
         >
           <div className="flex my-5 gap-3">
-            {food.map((item, index) => (
-              <div
-                key={index}
-                className="flex relative p-3 z-0 flex-col bg-white rounded-xl border border-gray-300 w-52"
+            {food.map((item) => (
+              <Link
+                href={{
+                  pathname: "/Food",
+                  query: {
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    desc: item.desc,
+                    img: item.img,
+                  },
+                }}
+                key={item.id}
+                className="flex relative p-3 z-0 flex-col hover:border-blue-900 cursor-pointer bg-white rounded-xl border border-gray-300 w-52"
               >
                 <div className="flex flex-col z-10 justify-between items-center p-2 bg-slate-100 rounded-lg h-60 w-full">
                   <div className="bg-white opacity-90 z-10 absolute right-4 top-4 cursor-pointer rounded-full p-1.5">
@@ -305,7 +272,7 @@ export default function Restaurant() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
