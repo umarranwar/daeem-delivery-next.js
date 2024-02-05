@@ -5,7 +5,6 @@ import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useContext } from "react";
 
 import { CiCreditCard2 } from "react-icons/ci";
@@ -26,7 +25,7 @@ export default function Checkout() {
     homeAddress: "",
     location: "",
   });
-const {cartItems} = useContext(Context)
+  const { cartItems } = useContext(Context);
   const handleDebitCardChange = () => {
     setDebitCardChecked(!debitCardChecked);
     setCashOnDeliveryChecked(false); // Unselect cash on delivery when debit card is selected
@@ -98,32 +97,6 @@ const {cartItems} = useContext(Context)
     // Display user details with address on the console
     console.log("User details with address:", userWithAddress);
   };
-
-  // Retrieve the extractedValues parameter from the URL
-  const searchParams = useSearchParams();
-  const extractedValuesParam = searchParams.get("extractedValues");
-
-  // Parse the extractedValues parameter into an array
-  const extractedValues = extractedValuesParam
-    ? JSON.parse(extractedValuesParam)
-    : [];
-  console.log("extractedValues ", extractedValues);
-  // Retrieve extractedValues from local storage when the component mounts
-  if (typeof window !== "undefined") {
-    const storedData = localStorage.getItem("orderData");
-    const storedValues = storedData ? JSON.parse(storedData) : [];
-
-    // Log the retrieved values to the console
-    console.log(
-      "Retrieved extractedValues from Cart and local storage:",
-      storedValues
-    );
-  } // This useEffect runs once when the component mounts
-  // Total price calculation
-  const totalPrice = extractedValues.reduce(
-    (acc, item) => acc + parseFloat(item.price) * item.quantity,
-    0
-  );
 
   const handleIsLogin = (value) => {
     setShowLogin(false);
@@ -246,11 +219,16 @@ const {cartItems} = useContext(Context)
             </div>
           </div>
         ) : (
-          <div className="flex w-2/4 mt-12 justify-center">
-            <button
+          <div className="flex items-center mt-0 flex-col w-2/4 justify-center">
+            <Image
               onClick={handleShowLogin}
-              className="w-3/4 mt-5 h-10 bg-white text-sm text-orange-400 rounded-2xl shadow-[0px_2px_5px_#bab6b5]"
-            >
+              src="/images/login2.png"
+              className="cursor-pointer"
+              width={200}
+              height={200}
+              alt="image"
+            />
+            <button onClick={handleShowLogin} className="text-sm">
               Please log in to proceed with your order
             </button>
           </div>
@@ -259,14 +237,19 @@ const {cartItems} = useContext(Context)
         <div className="flex flex-col w-2/4 h-auto">
           <div className="flex w-full">
             <div className="flex p-2 flex-col w-full">
-              <h1 className="text-xl my-4 font-bold">Your Order</h1>
+              <div className="flex justify-center items-center  gap-1">
+                <h1 className="text-xl my-4 font-bold">Your </h1>
+                <h1 className="text-xl my-4 text-orange-400 font-bold">
+                  Order
+                </h1>
+              </div>
               <div className="flex p-6 flex-col bg-white shadow-[0px_2px_5px_#bab6b5] rounded-lg">
                 {cartItems.map((item, index) => (
                   <div key={index}>
                     <div className="flex justify-between items-center w-full h-14">
                       <div className="flex gap-2">
                         <Image
-                          alt="item"
+                          alt="item-image"
                           src={item.img}
                           className="rounded-2xl"
                           width={50}
@@ -282,12 +265,12 @@ const {cartItems} = useContext(Context)
                 ))}
                 <div className="flex justify-between items-center w-full h-14">
                   <p className="flex font-semibold">Subtotal</p>
-                  <p className="flex font-semibold">SAR {totalPrice}</p>
+                  <p className="flex font-semibold">SAR total</p>
                 </div>
                 <div className="w-full h-0.5 bg-gray-200"></div>
                 <div className="flex justify-between items-center w-full h-14">
                   <p className="flex font-bold">Total</p>
-                  <p className="flex font-bold">SAR {totalPrice}</p>
+                  <p className="flex font-bold">SAR total</p>
                 </div>
               </div>
             </div>
@@ -329,37 +312,7 @@ const {cartItems} = useContext(Context)
                     onClick={handleAddress}
                     className="flex self-center bg-blue-900 ease-in-out duration-200 hover:bg-blue-800 active:bg-orange-400 justify-center rounded-full items-center w-2/4 h-8"
                   >
-                    <p className="flex text-sm text-white">
-                      <Link
-                        href={{
-                          pathname: "/OrderDetail",
-                          query: {
-                            orderDetail: JSON.stringify(
-                              extractedValues.map((item) => ({
-                                id: item.id,
-                                name: item.name,
-                                price: item.price,
-                                desc: item.desc,
-                                img: item.img,
-                                quantity: item.quantity,
-                              }))
-                            ),
-                            userAddress: JSON.stringify({
-                              city: userAddress.city,
-                              district: userAddress.district,
-                              streetAddress: userAddress.streetAddress,
-                              homeAddress: userAddress.homeAddress,
-                              location: userAddress.location,
-                              paymentOption: debitCardChecked
-                                ? "Debit Card"
-                                : "Cash On Delivery",
-                            }),
-                          },
-                        }}
-                      >
-                        Confirm Order
-                      </Link>
-                    </p>
+                    <p className="flex text-sm text-white"></p>
                   </button>
                 </div>
               </div>

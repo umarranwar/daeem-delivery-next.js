@@ -22,6 +22,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Context } from "@/components/Context";
 import Link from "next/link";
+import { getSingleStore } from "@/app/Helper";
 
 export default function AnotherPage(params) {
   let data = params;
@@ -31,7 +32,6 @@ export default function AnotherPage(params) {
   const singleFood = getSingleFood(foodId);
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("Small");
-  const [showMessage, setShowMessage] = useState(false);
   const { handleAddToCart } = useContext(Context);
 
   const updatedSingleFood = {
@@ -44,45 +44,64 @@ export default function AnotherPage(params) {
     size: size,
   };
 
+  const singleStore = getSingleStore(params.params.restaurant);
+
   const handleAddToCartClick = () => {
     console.log("handleAddToCartClick", updatedSingleFood);
     handleAddToCart(updatedSingleFood);
-
-    setShowMessage(true);
-
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
   };
+
   return (
-    <div className="flex flex-col text-blue-900 items-center justify-center">
+    <div className="flex bg-white flex-col text-blue-900 items-center justify-center">
       <Header />
       <div className="flex flex-col justify-center items-center my-5 w-full">
         <div className="flex relative justify-center items-center p-4 w-8/12">
           <div className="flex absolute left-5 items-center">
             <div className="relative w-16 h-16">
               <Image
-                src="/images/AlBAaik.png"
+                src={singleStore.logo}
                 className="w-full h-full"
-                width={50}
-                height={50}
+                width={300}
+                height={300}
                 alt="AlBAik Logo"
               />
             </div>
-            <p className="font-bold ml-2">{data.params.restaurant}</p>
+            <p
+              style={{
+                textShadow: "0px 1px 4px #2a2b2e",
+              }}
+              className="font-bold text-white ml-2"
+            >
+              {data.params.restaurant}
+            </p>
           </div>
-          <h1 className="text-2xl mr-1 font-bold">Order</h1>
-          <h1 className="text-2xl text-orange-400 font-bold">Detail</h1>
+          <h1
+            style={{
+              textShadow: "0px 1px 4px #fff",
+            }}
+            className="text-2xl mr-1 font-bold"
+          >
+            Order
+          </h1>
+          <h1
+            style={{
+              textShadow: "0px 1px 4px #fff",
+            }}
+            className="text-2xl text-orange-400 font-bold"
+          >
+            Detail
+          </h1>
         </div>
         <div className="w-8/12 mt-5 h-0.5 rounded-full bg-gray-300"></div>
       </div>
-      <div className="flex w-9/12 mb-20 shadow-[0px_2px_5px_#bab6b5] my-5 flex-row h-96">
+      <div className="flex w-9/12 mb-20 bg-white shadow-[0px_2px_5px_#bab6b5] my-5 flex-row h-96">
         <div className=" relative w-2/4 h-full">
           <Image
             src={singleFood.img}
-            width={300}
-            height={300}
+            width={500}
+            height={500}
             className="w-full h-full"
+            alt="image"
           />
         </div>
         <div className="flex gap-2 flex-col p-8 w-2/4 h-full">
@@ -103,40 +122,40 @@ export default function AnotherPage(params) {
             <button
               onClick={() => setQuantity(1)}
               // className="w-7 h-7 text-sm border-2 text-blue-900 border-blue-900 hover:border-orange-400 rounded-full"
-              className={`w-7 h-7 text-sm border text-blue-900 border-blue-900 ${
-                quantity === 1 ? "border-orange-400" : ""
+              className={`w-7 h-7 text-sm border border-blue-900 ${
+                quantity === 1 ? "border-orange-400 border-2" : ""
               } rounded-full`}
             >
               1
             </button>
             <button
               onClick={() => setQuantity(2)}
-              className={`w-7 h-7 text-sm border text-blue-900 border-blue-900 ${
-                quantity === 2 ? "border-orange-400" : ""
+              className={`w-7 h-7 text-sm border border-blue-900 ${
+                quantity === 2 ? "border-orange-400 border-2" : ""
               } rounded-full`}
             >
               2
             </button>
             <button
               onClick={() => setQuantity(3)}
-              className={`w-7 h-7 text-sm border text-blue-900 border-blue-900 ${
-                quantity === 3 ? "border-orange-400" : ""
+              className={`w-7 h-7 text-sm border border-blue-900 ${
+                quantity === 3 ? "border-orange-400 border-2" : ""
               } rounded-full`}
             >
               3
             </button>
             <button
               onClick={() => setQuantity(4)}
-              className={`w-7 h-7 text-sm border text-blue-900 border-blue-900 ${
-                quantity === 4 ? "border-orange-400" : ""
+              className={`w-7 h-7 text-sm border border-blue-900 ${
+                quantity === 4 ? "border-orange-400 border-2" : ""
               } rounded-full`}
             >
               4
             </button>
             <button
               onClick={() => setQuantity(5)}
-              className={`w-7 h-7 text-sm border text-blue-900 border-blue-900 ${
-                quantity === 5 ? "border-orange-400" : ""
+              className={`w-7 h-7 text-sm border border-blue-900 ${
+                quantity === 5 ? "border-orange-400 border-2" : ""
               } rounded-full`}
             >
               5
@@ -146,7 +165,7 @@ export default function AnotherPage(params) {
             <button
               onClick={() => setSize("Small")}
               className={`border border-blue-900 ${
-                size === "Small" ? "border-orange-400" : ""
+                size === "Small" ? "border-orange-400 border-2" : ""
               } px-3 rounded-full py-0.5`}
             >
               Small
@@ -154,7 +173,7 @@ export default function AnotherPage(params) {
             <button
               onClick={() => setSize("Large")}
               className={`border border-blue-900 ${
-                size === "Large" ? "border-orange-400" : ""
+                size === "Large" ? "border-orange-400 border-2" : ""
               } px-3 rounded-full py-0.5`}
             >
               Large
@@ -162,33 +181,30 @@ export default function AnotherPage(params) {
             <button
               onClick={() => setSize("Extra Large")}
               className={`border border-blue-900 ${
-                size === "Extra Large" ? "border-orange-400" : ""
+                size === "Extra Large" ? "border-orange-400 border-2" : ""
               } px-3 rounded-full py-0.5`}
             >
               Extra Large
             </button>
           </div>
           <div className="flex mt-10 gap-3 self-center">
-            <button
-              onClick={() => handleAddToCartClick()}
-              className="self-center rounded-full hover:px-6 px-4 py-2 ease-in-out duration-300 hover:bg-orange-400 active:bg-blue-900 text-white text-sm bg-blue-900"
-            >
-              Add to Cart
-            </button>
             <Link href="/Cart">
-              <button className="self-center rounded-full hover:px-6 px-4 py-2 ease-in-out duration-300 hover:bg-blue-900 active:bg-orange-400 text-white text-sm bg-orange-400">
-                View Cart
+              <button
+                onClick={() => handleAddToCartClick()}
+                className="self-center rounded-full hover:px-12 px-8 py-1 ease-in-out duration-300 hover:bg-blue-900 active:bg-orange-400 text-white text-sm bg-orange-400"
+              >
+                Add to Cart
               </button>
             </Link>
           </div>
         </div>
       </div>
 
-      {showMessage && (
+      {/* {showMessage && (
         <div className="fixed top-20 px-3 py-2 rounded-lg border border-gray-200 right-5 justify-between items-center bg-blue-100">
           Your items have been added to the cart!
         </div>
-      )}
+      )} */}
     </div>
   );
 }

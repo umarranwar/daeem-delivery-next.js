@@ -39,9 +39,11 @@ export default function Cart({ cartItems, removeFromCart }) {
       </div>
       <div className="flex flex-col px-3">
         {cartItems.length === 0 ? (
-          <div className="flex text-blue-900 justify-center items-center h-28">
-            Your Cart is empty. Add your favorite foods.
-          </div>
+          <Link href="/Restaurant">
+            <div className="flex cursor-pointer text-blue-900 justify-center items-center h-28">
+              Your Cart is empty. Go to Restaurant
+            </div>
+          </Link>
         ) : (
           <>
             {cartItems.map((item, index) => (
@@ -55,7 +57,7 @@ export default function Cart({ cartItems, removeFromCart }) {
                     className="rounded-full"
                     width={60}
                     height={60}
-                    alt="items"
+                    alt="item-image"
                   />
                 </div>
                 <div className="w-20">

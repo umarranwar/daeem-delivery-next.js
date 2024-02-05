@@ -56,13 +56,24 @@ export default function Page() {
         </div>
         <div className="w-8/12 mt-5 h-0.5 rounded-full bg-gray-300"></div>
       </div>
-      <div className="flex z-50 justify-center text-sm gap-2 w-full">
+      <div className="flex z-50 justify-center text-sm gap-5 w-full">
         <div className="flex w-5/12 gap-2 mb-10 flex-col">
           {cartItems.length === 0 ? (
-            <div className="flex justify-center items-center self-center">
-              <Image src="/images/empty-cart.png" width={200} height={200} />
-              <p>Your cart is empty add you favorite food</p>
-            </div>
+            <Link href="/Restaurant">
+              <div className="flex justify-center items-center self-center">
+                <Image
+                  src="/images/empty-cart.png"
+                  alt="item-image"
+                  width={200}
+                  height={200}
+                />
+                <div className="w-2/4">
+                  <p>
+                    Your cart is empty go to your favorite restaurant click here
+                  </p>
+                </div>
+              </div>
+            </Link>
           ) : (
             cartItems.map((item) => (
               <div
@@ -145,7 +156,7 @@ export default function Page() {
               <p>{totalItems}</p>
             </div>
             <div className="flex justify-between items-center">
-              <p>Subtotal</p>
+              <p>Subtotal Inc Vat</p>
               <p>SAR {subtotal.toFixed(2)}</p>
             </div>
             <div className="flex justify-between items-center">
@@ -158,7 +169,7 @@ export default function Page() {
             </div>
             <div className="self-center mt-3">
               <Link href="/Checkout">
-                <button className="bg-blue-900 ease-in-out duration-300 self-center text-white hover:bg-orange-400 active:bg-blue-900 rounded-full hover:px-10 py-2 px-8">
+                <button className="bg-blue-900 ease-in-out duration-300 self-center text-white hover:bg-orange-400 active:bg-blue-900 rounded-full hover:px-10 py-1 px-8">
                   Checkout
                 </button>
               </Link>

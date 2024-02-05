@@ -19,6 +19,9 @@ import banner1 from "../../public/images/banner1.jpg";
 import banner2 from "../../public/images/banner2.jpg";
 import Link from "next/link";
 
+import storeData from "../data/storeData.json";
+import foodData from "../data/foodData.json";
+
 const food = [
   {
     id: 1,
@@ -138,15 +141,9 @@ export default function Restaurant() {
         <h1 className="text-white">Foods</h1>
       </div>
       <div className="flex p-7 gap-5 flex-row">
-        {store.map((item) => (
+        {storeData.map((item) => (
           <Link
-            href={{
-              pathname: `/Restaurant/${item.store}`,
-              query: {
-                store: item.store,
-                logo: item.logo,
-              },
-            }}
+            href={`/Restaurant/${item.store}`}
             key={item.id}
             className="relative w-2/6 h-[40vh] rounded-xl p-1 bg-white border hover:border-orange-400 hover:border-2 hover:scale-105 ease-in-out duration-300 cursor-pointer shadow-2xl shadow-orange-400 "
           >
@@ -214,18 +211,9 @@ export default function Restaurant() {
           className="flex overflow-x-scroll scroll scroll-smooth scrollbar-hide flex-row"
         >
           <div className="flex my-5 gap-3">
-            {food.map((item) => (
+            {foodData.map((item) => (
               <Link
-                href={{
-                  pathname: "/Food",
-                  query: {
-                    id: item.id,
-                    name: item.name,
-                    price: item.price,
-                    desc: item.desc,
-                    img: item.img,
-                  },
-                }}
+                href={`/Restaurant/${item.store}/${item.id}`}
                 key={item.id}
                 className="flex relative p-3 z-0 flex-col hover:border-blue-900 cursor-pointer bg-white rounded-xl border border-gray-300 w-52"
               >

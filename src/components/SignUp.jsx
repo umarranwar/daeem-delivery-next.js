@@ -69,7 +69,7 @@ export default function SignUp({ closeSignUp }) {
     }
   };
   return (
-    <div className="fixed inset-20 justify-between items-center right-96 left-96 flex flex-col shadow-[0px_2px_5px_#bab6b5] rounded-xl bg-gradient-to-br bg-white">
+    <div className="fixed inset-20 justify-between items-center right-80 left-80 flex flex-col shadow-[0px_2px_5px_#bab6b5] rounded-xl bg-gradient-to-br bg-white">
       <IoClose
         onClick={closeSignUp}
         className="size-7 cursor-pointer text-blue-900 absolute right-2 top-2 z-50"
