@@ -1,14 +1,13 @@
 "use client";
-import { Context } from "@/components/Context";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-
 import { CiCreditCard2 } from "react-icons/ci";
 import { CiMoneyBill } from "react-icons/ci";
+import { Context } from "@/components/Context";
 
 export default function Checkout() {
   const [debitCardChecked, setDebitCardChecked] = useState(false);
@@ -26,6 +25,13 @@ export default function Checkout() {
     location: "",
   });
   const { cartItems } = useContext(Context);
+
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  console.log("cartItems from context: ", cartItems);
   const handleDebitCardChange = () => {
     setDebitCardChecked(!debitCardChecked);
     setCashOnDeliveryChecked(false); // Unselect cash on delivery when debit card is selected
@@ -80,22 +86,12 @@ export default function Checkout() {
     console.log("Debit Card Checked:", debitCardChecked);
     console.log("Cash on Delivery Checked:", cashOnDeliveryChecked);
 
-    // Check if the user is signed up based on stored data in local storage
-    if (typeof window !== "undefined") {
-      const userAuth = JSON.parse(localStorage.getItem("userAuth"));
-      const storedUserData = JSON.parse(localStorage.getItem("userData"));
-    }
-
-    // Save the address information to local storage
-    const userWithAddress = {
-      ...storedUserData,
+    const orderDetail = {
+      ...cartItems,
       address: userAddress,
     };
-
-    localStorage.setItem("userData", JSON.stringify(userWithAddress));
-
-    // Display user details with address on the console
-    console.log("User details with address:", userWithAddress);
+    console.log("Order detail :", orderDetail);
+    localStorage.setItem("userData", JSON.stringify(orderDetail));
   };
 
   const handleIsLogin = (value) => {
@@ -234,7 +230,7 @@ export default function Checkout() {
           </div>
         )}
 
-        <div className="flex flex-col w-2/4 h-auto">
+        <div className="flex flex-col w-7/12 h-auto">
           <div className="flex w-full">
             <div className="flex p-2 flex-col w-full">
               <div className="flex justify-center items-center  gap-1">
@@ -246,31 +242,39 @@ export default function Checkout() {
               <div className="flex p-6 flex-col bg-white shadow-[0px_2px_5px_#bab6b5] rounded-lg">
                 {cartItems.map((item, index) => (
                   <div key={index}>
-                    <div className="flex justify-between items-center w-full h-14">
-                      <div className="flex gap-2">
-                        <Image
-                          alt="item-image"
-                          src={item.img}
-                          className="rounded-2xl"
-                          width={50}
-                          height={50}
-                        />
+                    <div className="flex justify-between items-center w-full">
+                      <div className="flex justify-center items-center gap-2">
+                        <div className="w-16 rounded-full h-16 ">
+                          <Image
+                            alt="item-image"
+                            src={item.img}
+                            className="rounded-full w-full h-full"
+                            width={50}
+                            height={50}
+                          />
+                        </div>
                         <p>{item.quantity}</p>
                         <p>{item.name}</p>
+                        <p>{item.size}</p>
                       </div>
-                      <p>{item.price}</p>
+                      <p className="font-bold">{item.price}.0</p>
                     </div>
                     <div className="w-full h-0.5 bg-gray-200"></div>
                   </div>
                 ))}
                 <div className="flex justify-between items-center w-full h-14">
-                  <p className="flex font-semibold">Subtotal</p>
-                  <p className="flex font-semibold">SAR total</p>
+                  <p className="flex">Subtotal Inc Vat</p>
+                  <p className="flex">SAR {totalPrice}.0</p>
                 </div>
                 <div className="w-full h-0.5 bg-gray-200"></div>
                 <div className="flex justify-between items-center w-full h-14">
-                  <p className="flex font-bold">Total</p>
-                  <p className="flex font-bold">SAR total</p>
+                  <p className="flex">Delivery</p>
+                  <p className="flex">SAR 10.0</p>
+                </div>
+                <div className="w-full h-0.5 bg-gray-200"></div>
+                <div className="flex font-bold justify-between items-center w-full h-14">
+                  <p className="flex">Total</p>
+                  <p className="flex">SAR {totalPrice + 10}.0</p>
                 </div>
               </div>
             </div>
@@ -310,9 +314,9 @@ export default function Checkout() {
                   </div>
                   <button
                     onClick={handleAddress}
-                    className="flex self-center bg-blue-900 ease-in-out duration-200 hover:bg-blue-800 active:bg-orange-400 justify-center rounded-full items-center w-2/4 h-8"
+                    className="flex text-sm hover:px-5 px-4 py-1 text-white self-center bg-blue-900 ease-in-out duration-300 hover:bg-blue-800 active:bg-orange-400 justify-center rounded-full items-center"
                   >
-                    <p className="flex text-sm text-white"></p>
+                    Confirm Order
                   </button>
                 </div>
               </div>

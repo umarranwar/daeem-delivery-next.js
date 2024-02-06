@@ -39,7 +39,7 @@ export default function Page() {
       <Header />
       <div className="flex z-40 flex-col justify-center items-center my-5 w-full">
         <div className="flex relative justify-center items-center p-4 w-8/12">
-          <div className="flex absolute left-5 items-center">
+          {/* <div className="flex absolute left-5 items-center">
             <div className="relative w-16 h-16">
               <Image
                 src="/images/AlBAaik.png"
@@ -50,7 +50,7 @@ export default function Page() {
               />
             </div>
             <p className="font-bold text-blue-900 ml-2">AlBAik</p>
-          </div>
+          </div> */}
           <h1 className="text-2xl text-blue-900 mr-1 font-bold">Your</h1>
           <h1 className="text-2xl text-orange-400 font-bold">Cart</h1>
         </div>

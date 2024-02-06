@@ -145,14 +145,14 @@ export default function Restaurant() {
           <Link
             href={`/Restaurant/${item.store}`}
             key={item.id}
-            className="relative w-2/6 h-[40vh] rounded-xl p-1 bg-white border hover:border-orange-400 hover:border-2 hover:scale-105 ease-in-out duration-300 cursor-pointer shadow-2xl shadow-orange-400 "
+            className="relative w-2/6 h-[35vh] rounded-xl p-1 bg-white border hover:border-orange-400 hover:border-2 hover:scale-105 ease-in-out duration-300 cursor-pointer shadow-2xl shadow-orange-400 "
           >
             <Image
               src={item.logo}
               alt="banner"
               width={100}
               height={100}
-              className="absolute m-2 w-20 h-20"
+              className="absolute m-2 w-16 h-16"
             />
             <div className="bg-white opacity-90 absolute right-2 top-2 cursor-pointer rounded-full p-1.5">
               <BiHeart className="size-6 text-blue-900" />
@@ -170,7 +170,7 @@ export default function Restaurant() {
                 style={{
                   textShadow: "0px 1px 4px #2a2b2e",
                 }}
-                className="text-sm text-white text-stroke w-2/4"
+                className="text-sm font-bold text-white text-stroke w-2/4"
               >
                 {item.desc}
               </p>
