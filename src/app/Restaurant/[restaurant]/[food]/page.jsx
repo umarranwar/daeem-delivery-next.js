@@ -52,12 +52,12 @@ export default function AnotherPage(params) {
   };
 
   return (
-    <div className="flex bg-white flex-col text-blue-900 items-center justify-center">
+    <div className="flex bg-gradient-to-tl from-blue-400 to-orange-300 flex-col text-blue-900 items-center justify-center">
       <Header />
       <div className="flex flex-col justify-center items-center my-5 w-full">
         <div className="flex relative justify-center items-center p-4 w-8/12">
           <div className="flex absolute left-5 items-center">
-            <div className="relative w-16 h-16">
+            <div className="flex justify-center items-center relative w-16 h-16">
               <Image
                 src={singleStore.logo}
                 className="w-full h-full"
@@ -77,30 +77,30 @@ export default function AnotherPage(params) {
           </div>
           <h1
             style={{
-              textShadow: "0px 1px 4px #fff",
+              textShadow: "0px 1px 4px #2a2b2e",
             }}
-            className="text-2xl mr-1 font-bold"
+            className="text-2xl text-white mr-1 font-bold"
           >
             Order
           </h1>
           <h1
             style={{
-              textShadow: "0px 1px 4px #fff",
+              textShadow: "0px 1px 4px #2a2b2e",
             }}
-            className="text-2xl text-orange-400 font-bold"
+            className="text-2xl text-white font-bold"
           >
             Detail
           </h1>
         </div>
         <div className="w-8/12 mt-5 h-0.5 rounded-full bg-gray-300"></div>
       </div>
-      <div className="flex w-9/12 mb-20 bg-white shadow-[0px_2px_5px_#bab6b5] my-5 flex-row h-96">
+      <div className="flex w-9/12 rounded-lg mb-20 bg-white shadow-[0px_2px_5px_#bab6b5] my-5 flex-row h-96">
         <div className=" relative w-2/4 h-full">
           <Image
             src={singleFood.img}
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full rounded-l-lg h-full"
             alt="image"
           />
         </div>
@@ -191,7 +191,7 @@ export default function AnotherPage(params) {
             <Link href="/Cart">
               <button
                 onClick={() => handleAddToCartClick()}
-                className="self-center rounded-full hover:px-12 px-8 py-1 ease-in-out duration-300 hover:bg-blue-900 active:bg-orange-400 text-white text-sm bg-orange-400"
+                className="self-center rounded-full hover:px-12 px-10 py-2 ease-in-out duration-300 hover:bg-blue-900 active:bg-orange-400 text-white text-sm bg-orange-400"
               >
                 Add to Cart
               </button>

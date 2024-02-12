@@ -14,7 +14,7 @@ function Section() {
               src="/images/playstore.png"
               height={150}
               alt="/"
-              className="h-auto w-auto"
+              style={{ height: "auto" }}
               width={150}
             />
           </div>
@@ -23,6 +23,7 @@ function Section() {
               src="/images/appstore.png"
               height={150}
               className="h-auto w-auto"
+              style={{ height: "auto" }}
               alt="/"
               width={150}
             />

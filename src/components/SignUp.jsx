@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
-export default function SignUp({ closeSignUp }) {
+export default function SignUp({ showLogin, closeSignUp }) {
   // State to store user input and validation errors
   const [userData, setUserData] = useState({
     name: "",
@@ -66,10 +66,11 @@ export default function SignUp({ closeSignUp }) {
 
       // Close the sign-up modal or perform any other action
       closeSignUp();
+      showLogin();
     }
   };
   return (
-    <div className="fixed inset-20 justify-between items-center right-80 left-80 flex flex-col shadow-[0px_2px_5px_#bab6b5] rounded-xl bg-gradient-to-br bg-white">
+    <div className="fixed inset-20 justify-between items-center right-80 left-80 flex flex-col shadow-[0px_2px_5px_#bab6b5] rounded-xl bg-gradient-to-br bg-gray-100">
       <IoClose
         onClick={closeSignUp}
         className="size-7 cursor-pointer text-blue-900 absolute right-2 top-2 z-50"

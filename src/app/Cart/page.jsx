@@ -35,9 +35,9 @@ export default function Page() {
   }, [subtotal, deliveryCost]);
 
   return (
-    <div className="flex z-50 bg-gray-50 flex-col justify-center items-center">
+    <div className="flex z-50 h-screen bg-gradient-to-tl from-blue-400 to-orange-300 flex-col items-center">
       <Header />
-      <div className="flex z-40 flex-col justify-center items-center my-5 w-full">
+      <div className="flex z-40  flex-col justify-center items-center my-5 w-full">
         <div className="flex relative justify-center items-center p-4 w-8/12">
           {/* <div className="flex absolute left-5 items-center">
             <div className="relative w-16 h-16">
@@ -51,10 +51,24 @@ export default function Page() {
             </div>
             <p className="font-bold text-blue-900 ml-2">AlBAik</p>
           </div> */}
-          <h1 className="text-2xl text-blue-900 mr-1 font-bold">Your</h1>
-          <h1 className="text-2xl text-orange-400 font-bold">Cart</h1>
+          <h1
+            style={{
+              textShadow: "0px 1px 4px #2a2b2e",
+            }}
+            className="text-2xl text-white mr-1 font-bold"
+          >
+            Your
+          </h1>
+          <h1
+            style={{
+              textShadow: "0px 1px 4px #2a2b2e",
+            }}
+            className="text-2xl text-white font-bold"
+          >
+            Cart
+          </h1>
         </div>
-        <div className="w-8/12 mt-5 h-0.5 rounded-full bg-gray-300"></div>
+        <div className="w-7/12 mt-5 h-0.5 rounded-full bg-gray-100"></div>
       </div>
       <div className="flex z-50 justify-center text-sm gap-5 w-full">
         <div className="flex w-5/12 gap-2 mb-10 flex-col">
@@ -78,7 +92,7 @@ export default function Page() {
             cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex p-3 border bg-white shadow-[0px_1px_3px_#bab6b5] rounded-xl text-blue-900 gap-4 items-center justify-between flex-row"
+                className="flex p-3 border bg-gray-100 shadow-[0px_1px_3px_#bab6b5] rounded-xl text-blue-900 gap-4 items-center justify-between flex-row"
               >
                 <div className="flex justify-center items-center gap-3">
                   <div className="relative w-16 h-16">
@@ -150,7 +164,7 @@ export default function Page() {
           ))} */}
         </div>
         <div className="h-auto w-64">
-          <div className="flex p-5 shadow-[0px_1px_3px_#bab6b5] bg-white rounded-xl border gap-4 flex-col">
+          <div className="flex p-5 shadow-[0px_1px_3px_#bab6b5] bg-gray-100 rounded-xl border gap-4 flex-col">
             <div className="flex font-bold text-gra justify-between items-center">
               <p>Total Items</p>
               <p>{totalItems}</p>

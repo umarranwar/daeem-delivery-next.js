@@ -1,17 +1,16 @@
-"use client";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-
 import { BsFillShieldLockFill, BsTelephoneFill } from "react-icons/bs";
 import { CgSpinner } from "react-icons/cg";
-
+import { CiLogin } from "react-icons/ci";
+  
 import OtpInput from "otp-input-react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { auth } from "./firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { toast, Toaster } from "react-hot-toast";
-import { IoPhonePortraitOutline } from "react-icons/io5";
+import { IoIosPhonePortrait } from "react-icons/io";
 
 export default function Login({ closeLogin, isLogin, showSignUp }) {
   const [otp, setOtp] = useState("");
@@ -19,6 +18,7 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+  const [showError, setShowError] = useState(false);
 
   // State to store user input
   const [usingEmail, setUsingEmail] = useState(false);
@@ -132,15 +132,17 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
       } else {
         // User is not signed up
         console.log("User is not signed up!");
+        setShowError(true);
       }
     } else {
       // User is not signed up
       console.log("User is not signed up!");
+      setShowError(true);
     }
   };
 
   return (
-    <div className="fixed inset-20 right-80 left-80 flex items-center flex-col shadow-[0px_2px_5px_#bab6b5] rounded-xl bg-gradient-to-br bg-white">
+    <div className="fixed inset-20 right-80 left-80 flex items-center flex-col shadow-[0px_2px_5px_#bab6b5] rounded-xl bg-gradient-to-br bg-gray-100">
       <IoClose
         onClick={closeLogin}
         className="size-7 cursor-pointer text-blue-900 absolute right-2 top-2 z-50"
@@ -174,6 +176,9 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
                 className="w-full px-3 text-sm h-9 mb-2 border shadow-[0px_1px_3px_#bab6b5] bg-transparent focus:outline-none focus:ring-blue-900 focus:ring-1 rounded-md"
               />
             </div>
+            {showError && (
+              <p className="text-red-500 text-sm">User is not signed up! </p>
+            )}
             <button
               onClick={handleLogin}
               className="flex self-center mt-5 bg-blue-900 ease-in-out duration-300 hover:bg-orange-400 active:bg-blue-800 justify-center rounded-full items-center hover:w-3/4 w-8/12 h-9"
@@ -202,7 +207,7 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
               <div className="w-80 flex justify-center items-center flex-col gap-4 rounded-lg p-4">
                 {showOTP ? (
                   <>
-                    <div className="bg-white text-white w-fit mx-auto p-4 rounded-full">
+                    <div className="bg-white text-orange-400 w-fit mx-auto p-4 rounded-full">
                       <BsFillShieldLockFill size={30} />
                     </div>
                     <label
@@ -222,7 +227,7 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
                     ></OtpInput>
                     <button
                       onClick={onOTPVerify}
-                      className="bg-blue-900 w-full flex gap-1 items-center justify-center py-2.5 rounded"
+                      className="bg-blue-900 text-white w-full flex gap-1 items-center justify-center py-2.5 rounded"
                     >
                       {loading && (
                         <CgSpinner size={20} className="mt-1 animate-spin" />
@@ -232,12 +237,10 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
                   </>
                 ) : (
                   <>
-                    <div className="bg-blue-900 text-white w-fit mx-auto p-4 rounded-full">
-                      <IoPhonePortraitOutline size={50} />
-                    </div>
+                    <IoIosPhonePortrait className="text-orange-400 size-28" />
                     <label
                       htmlFor=""
-                      className="font-bold text-black text-center"
+                      className="font text-blue-900 text-center"
                     >
                       Verify your phone number
                     </label>
@@ -246,7 +249,7 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
                     </div>
                     <button
                       onClick={onSignup}
-                      className="bg-blue-900 w-full self-center flex gap-1 items-center justify-center py-2 text-white rounded"
+                      className="bg-blue-900 hover:bg-orange-400 active:bg-blue-800 w-full self-center flex gap-1 items-center justify-center py-2 text-white rounded-full"
                     >
                       {loading && (
                         <CgSpinner size={20} className="mt-1 animate-spin" />
@@ -260,19 +263,22 @@ export default function Login({ closeLogin, isLogin, showSignUp }) {
           </div>
         )}
         {!(usingEmail || usingOTP) && (
-          <div className="flex w-full text-white h-52 mt-10 flex-col justify-center items-center gap-5">
-            <button
-              onClick={() => setUsingEmail(true)}
-              className="flex ease-in-out duration-300 w-56 hover:w-60 active:to-blue-800 py-2 rounded-lg bg-blue-900 justify-center items-center"
-            >
-              Using Email Password
-            </button>
-            <button
-              onClick={() => setUsingOTP(true)}
-              className="flex ease-in-out duration-300 active:bg-orange-400 hover:w-60 w-56 py-2 rounded-lg bg-orange-400 justify-center items-center"
-            >
-              Using Phone OTP
-            </button>
+          <div className="flex w-full text-white h-52 mt-10 justify-center items-center gap-5">
+            <CiLogin className="text-blue-900 size-40" />
+            <div className="flex flex-col gap-4">
+              <button
+                onClick={() => setUsingEmail(true)}
+                className="flex ease-in-out duration-300 w-56  rounded-full py-2 bg-orange-400 hover:bg-blue-900 active:to-orange-400 justify-center items-center"
+              >
+                Using Email Password
+              </button>
+              <button
+                onClick={() => setUsingOTP(true)}
+                className="flex ease-in-out duration-300 hover:border-orange-400 rounded-full py-1.5 text-blue-900 border-2 border-blue-900 justify-center items-center"
+              >
+                Using Phone OTP
+              </button>
+            </div>
           </div>
         )}
       </div>

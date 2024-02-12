@@ -1,35 +1,78 @@
 "use client";
 import Header from "@/components/Header";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import { useContext } from "react";
 import { Context } from "@/components/Context";
 
-export default function page() {
+export default function Page() {
   const { cartItems } = useContext(Context);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("userData");
+    if (userDataString) {
+      const userData = JSON.parse(userDataString);
+      setUserData(userData);
+    } else {
+      console.log("userData not found in localStorage");
+    }
+  }, []);
+
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="bg-gray-50">
       <Header />
       <div className="flex flex-col justify-center items-center my-5 w-full">
         <div className="flex relative justify-center items-center p-4 w-8/12">
-          <h1 className="text-2xl text-blue-900 font-extrabold">Checkout</h1>
+          <h1 className="text-2xl text-blue-900 font-extrabold">
+            Order Detail
+          </h1>
         </div>
         <div className="w-8/12 mt-5 h-0.5 rounded-full bg-gray-300"></div>
       </div>
       <div className="flex gap-5 pb-10 text-blue-900 px-36">
-        <div className="flex flex-col h-96 w-2/4">
-          <div className="flex p-2 flex-col w-full">
-            <h1 className="text-xl mt-4 font-bold">Your Address</h1>
-          </div>
-          <div className="w-full flex flex-col items-center">
-            <div className="flex gap-4 w-full">
-              <div className="w-2/4">
-                <p className="text-sm m-1 font-bold text-blue-900">City</p>
+        {userData && userData.address && (
+          <div className="flex flex-col h-96 w-2/4">
+            {/* <div className="flex p-2 flex-col w-full">
+              <h1 className="text-xl my-3 font-bold">Your Address</h1>
+            </div> */}
+            <div className="flex mt-2 justify-center items-center  gap-1">
+              <h1 className="text-xl my-4 font-bold">Your </h1>
+              <h1 className="text-xl my-4 text-orange-400 font-bold">
+                Address
+              </h1>
+            </div>
+            <div className="flex p-6 flex-col bg-white shadow-[0px_2px_5px_#bab6b5] rounded-lg">
+              <div className="flex w-full">
+                <div className="">
+                  <p className="text-sm m-1 text-blue-900">
+                    City: {userData.address.city}
+                  </p>
+                  <p className="text-sm m-1 text-blue-900">
+                    District: {userData.address.district}
+                  </p>
+                  <p className="text-sm m-1 text-blue-900">
+                    Street Address {userData.address.streetAddress}
+                  </p>
+                  <p className="text-sm m-1 text-blue-900">
+                    Home Address {userData.address.homeAddress}
+                  </p>
+                  <p className="text-sm m-1 text-blue-900">
+                    Location: {userData.address.location}
+                  </p>
+                </div>
               </div>
             </div>
+            <div className="flex my-5 flex-col justify-center items-center">
+              <p className="text-orange-400">Thank you for your order!</p>
+              <p className="text-blue-900">We will deliver your order soon.</p>
+            </div>
           </div>
-        </div>
+        )}
         <div className="flex flex-col w-7/12 h-auto">
           <div className="flex w-full">
             <div className="flex p-2 flex-col w-full">
@@ -64,7 +107,7 @@ export default function page() {
                 ))}
                 <div className="flex justify-between items-center w-full h-14">
                   <p className="flex">Subtotal Inc Vat</p>
-                  <p className="flex">SAR Total</p>
+                  <p className="flex">SAR {totalPrice}</p>
                 </div>
                 <div className="w-full h-0.5 bg-gray-200"></div>
                 <div className="flex justify-between items-center w-full h-14">
@@ -74,7 +117,7 @@ export default function page() {
                 <div className="w-full h-0.5 bg-gray-200"></div>
                 <div className="flex font-bold justify-between items-center w-full h-14">
                   <p className="flex">Total</p>
-                  <p className="flex">SAR Total</p>
+                  <p className="flex">SAR {totalPrice + 10}</p>
                 </div>
               </div>
             </div>
