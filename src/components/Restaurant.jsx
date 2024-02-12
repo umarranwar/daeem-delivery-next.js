@@ -1,18 +1,11 @@
-"use client";
 import React from "react";
-import { useRouter } from "next/navigation";
 
 import Image from "next/image";
-import Albaik from "../../public/images/AlBAaik.png";
-import KFC from "../../public/images/KFC_logo.png";
-import Herfy from "../../public/images/Herfy_logo.png";
 import { BiHeart } from "react-icons/bi";
 import { FaStar } from "react-icons/fa";
 import { FaCircleChevronRight } from "react-icons/fa6";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 
-import broastPic from "../../public/images/AlBaikpic1.JPG";
-import AlBaikpic3 from "../../public/images/AlBaikpic3.JPG";
 import albaik03 from "../../public/images/albaik03.jpg";
 
 import banner1 from "../../public/images/banner1.jpg";
@@ -22,101 +15,7 @@ import Link from "next/link";
 import storeData from "../data/storeData.json";
 import foodData from "../data/foodData.json";
 
-const food = [
-  {
-    id: 1,
-    name: "AlbAik Chicken Fries",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/albaik01.jpg",
-  },
-  {
-    id: 2,
-    name: "McDonalds Chicken Broast",
-    price: "27.95",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/albaik.JPG",
-  },
-  {
-    id: 3,
-    name: "AlbAik Chicken Fries",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/albaik01.jpg",
-  },
-  {
-    id: 4,
-    name: "Special Chicken Rice with Dry Fruits",
-    price: "33.0",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/chickenRice.png",
-  },
-  {
-    id: 5,
-    name: "KFC Chicken Broast",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/kfc.jpg",
-  },
-  {
-    id: 6,
-    name: "Vegetable Pizza",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/food3.jpg",
-  },
-  {
-    id: 7,
-    name: "AlbAik Chicken Fries",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/albaik01.jpg",
-  },
-  {
-    id: 8,
-    name: "AlbAik Chicken Fries",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/albaik01.jpg",
-  },
-  {
-    id: 9,
-    name: "AlbAik Chicken Fries",
-    price: "17.50",
-    desc: "Description AlbAik Chicken Fries",
-    img: "/images/albaik01.jpg",
-  },
-];
-
-const store = [
-  {
-    id: 1,
-    store: "AlBAik",
-    title: "7 Piece Chicken Nuggets Meal",
-    desc: "Spicy and crunchy to perfection includes a bun, fries, and 2 nuggets",
-    logo: "/images/AlBAaik.png",
-    bgImg: "/images/albaik03.jpg",
-  },
-  {
-    id: 2,
-    store: "HERFY",
-    title: "7 Piece Chicken Nuggets Meal",
-    desc: "Spicy and crunchy to perfection includes a bun, fries, and 2 nuggets",
-    logo: "/images/Herfy_logo.png",
-    bgImg: "/images/AlBaikpic3.JPG",
-  },
-  {
-    id: 3,
-    store: "KFC",
-    title: "7 Piece Chicken Nuggets Meal",
-    desc: "Spicy and crunchy to perfection includes a bun, fries, and 2 nuggets",
-    logo: "/images/KFC_logo.png",
-    bgImg: "/images/AlBaikpic1.JPG",
-  },
-];
-
 export default function Restaurant() {
-  const router = useRouter();
 
   const slideRight = () => {
     var slider = document.getElementById("slider");
